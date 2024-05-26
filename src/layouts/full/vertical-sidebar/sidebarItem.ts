@@ -31,6 +31,12 @@ const sidebarItem: menu[] = [
     BgColor: 'primary',
     to: '/'
   },
+  {
+    title: 'Próximos Compromisos',
+    icon: LayoutDashboardIcon,
+    BgColor: 'primary',
+    to: '/compromisos'
+  },
   /* { header: 'Ui components' },
   {
     title: "Alert",

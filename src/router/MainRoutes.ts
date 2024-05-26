@@ -9,7 +9,12 @@ const MainRoutes = {
         {
             name: 'Dashboard',
             path: '/',
-            component: () => import('@/views/dashboard/index.vue')
+            component: () => import('@/views/dashboard/index.vue'),
+        },
+        {
+            name: 'Compromisos',
+            path: '/compromisos',
+            component: () => import('@/views/dashboard/compromisos.vue'),
         },
         /* {
             name: 'Alert',

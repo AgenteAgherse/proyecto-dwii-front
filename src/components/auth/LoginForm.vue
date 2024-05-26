@@ -18,7 +18,13 @@ const credentialsError = ref(false);
 async function ingresar() {
     await axios.get(`http://localhost/proyecto-dwii/Controller/UserController.php?user=${credentials.value.user}&password=${credentials.value.password}`)
     .then(res => {
-        localStorage.setItem('id', res.data.id);
+        if (res.data.length === 0) {
+            credentialsError.value = true;
+            credentialsErrorMessage.value = "Error en las credenciales";
+            return;
+        }
+        console.log(res.data);
+        localStorage.setItem('id', res.data);
         router.push('/');
         credentialsError.value = false;
     })
