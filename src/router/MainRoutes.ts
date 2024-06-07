@@ -16,37 +16,16 @@ const MainRoutes = {
             path: '/compromisos',
             component: () => import('@/views/dashboard/compromisos.vue'),
         },
-        /* {
-            name: 'Alert',
-            path: '/ui/alerts',
-            component: () => import('@/views/ui-components/Alerts.vue')
+        {
+            name: 'Detalle Compromiso',
+            path: '/compromisos/:id',
+            component: () => import('@/views/dashboard/detalles.vue'),
         },
         {
-            name: 'Buttons',
-            path: '/ui/buttons',
-            component: () => import('@/views/ui-components/Buttons.vue')
+            name: 'Compromisos Inscritos',
+            path: '/compromisos-inscritos',
+            component: () => import('@/views/dashboard/registrados.vue'),
         },
-        {
-            name: 'Cards',
-            path: '/ui/cards',
-            component: () => import('@/views/ui-components/Cards.vue')
-        },
-        {
-            name: 'Tables',
-            path: '/ui/tables',
-            component: () => import('@/views/ui-components/Tables.vue')
-        },
-        {
-            name: 'Icons',
-            path: '/icons',
-            component: () => import('@/views/pages/Icons.vue')
-        },
-        {
-            name: 'Starter',
-            path: '/sample-page',
-            component: () => import('@/views/pages/SamplePage.vue')
-        },
-        */
     ]
 };
 

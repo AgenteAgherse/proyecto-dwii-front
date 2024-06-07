@@ -37,6 +37,12 @@ const sidebarItem: menu[] = [
     BgColor: 'primary',
     to: '/compromisos'
   },
+  {
+    title: 'Compromisos Inscritos',
+    icon: LayoutDashboardIcon,
+    BgColor: 'primary',
+    to: '/compromisos-inscritos'
+  },
   /* { header: 'Ui components' },
   {
     title: "Alert",

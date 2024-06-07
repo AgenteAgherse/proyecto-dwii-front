@@ -100,7 +100,6 @@ async function generarCompromiso() {
                     <v-card elevation="0">
                         <v-card-text>
                         <div class="font-weight-bold ml-1 mb-2">{{ compromiso.titulo }}</div>
-
                         <v-timeline density="compact">
                             <v-timeline-item>
                             <div class="mb-4">
@@ -115,9 +114,13 @@ async function generarCompromiso() {
                                 <br>
                                 {{ `Horario: ${compromiso.hora_inicio}-${compromiso.hora_fin}` }}
                             </div>
+                            <v-col class="d-flex justify-center">
+                                <v-btn size="large" rounded="pill" color="primary" class="rounded-pill" type="submit" flat @click="router.push(`/compromisos/${compromiso.idcompromiso}`)">Ver Detalles</v-btn>
+                            </v-col>
                             </v-timeline-item>
                         </v-timeline>
                         </v-card-text>
+
                     </v-card>
                     </v-row>
                 </div>
@@ -133,7 +136,7 @@ async function generarCompromiso() {
 
     <v-dialog v-model="compromisoNuevo" max-width="500px">
       <v-card>
-        <v-card-title class="headline">Título del Modal</v-card-title>
+        <v-card-title class="headline">Generar Compromiso</v-card-title>
   
         <v-row class="d-flex justify-center align-center">
             <v-col cols="11">
