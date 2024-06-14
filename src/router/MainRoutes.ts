@@ -26,6 +26,11 @@ const MainRoutes = {
             path: '/compromisos-inscritos',
             component: () => import('@/views/dashboard/registrados.vue'),
         },
+        {
+            name: 'Actas Realizadas',
+            path: '/actas-usuario',
+            component: () => import('@/views/dashboard/actas.vue'),
+        }
     ]
 };
 

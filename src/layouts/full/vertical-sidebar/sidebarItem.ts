@@ -3,7 +3,7 @@ import {
   AlertCircleIcon,
   CircleDotIcon,
   BoxMultiple1Icon,
-  LoginIcon, MoodHappyIcon, ApertureIcon, UserPlusIcon
+  LoginIcon, MoodHappyIcon, ActivityIcon, FileSpreadsheetIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -43,6 +43,12 @@ const sidebarItem: menu[] = [
     BgColor: 'primary',
     to: '/compromisos-inscritos'
   },
+  {
+    title: 'Actas Registradas',
+    icon: FileSpreadsheetIcon,
+    BgColor: 'primary',
+    to: '/actas-usuario'
+  }
   /* { header: 'Ui components' },
   {
     title: "Alert",
