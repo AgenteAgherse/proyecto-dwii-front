@@ -29,6 +29,7 @@ const compromiso = ref({
 
 const nuevaActa = ref({
     'pertenece': compromiso_id,
+    'titulo': '',
     'fecha': '',
     'hora': '',
     'lugar_emision': '',
@@ -146,19 +147,19 @@ function mostrarInformacion(descripcion: string) {
                         </tr>     </thead>
                     <tbody class="text-center">
                         <tr>
-                            <td>Título</td>
+                            <td><strong>Título</strong></td>
                             <td>{{ compromiso.titulo }}</td>
                         </tr>
                         <tr>
-                            <td>Días</td>
+                            <td><strong>Días</strong></td>
                             <td>{{ compromiso.fecha_inicio }} / {{ compromiso.fecha_fin }}</td>
                         </tr>
                         <tr>
-                            <td>Horario</td>
+                            <td><strong>Horario</strong></td>
                             <td>{{ compromiso.hora_inicio }} / {{ compromiso.hora_fin }}</td>
                         </tr>
                         <tr>
-                            <td>Días</td>
+                            <td><strong>Lugar</strong></td>
                             <td>{{ compromiso.modalidad }} - {{ compromiso.lugar }}</td>
                         </tr>
                     </tbody>
@@ -200,17 +201,19 @@ function mostrarInformacion(descripcion: string) {
                 <v-table>
                     <thead class="text-center">
                         <tr>
-                            <th class="text-center">Lugar</th>
-                            <th class="text-center">Emisión</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center"><strong>Asunto</strong></th>
+                            <th class="text-center"><strong>Lugar</strong></th>
+                            <th class="text-center"><strong>Emisión</strong></th>
+                            <th class="text-center"><strong>Acciones</strong></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="item in actas" :key="item.name">
+                            <td class="text-center">{{ item.titulo }}</td>
                             <td class="text-center">{{ item.lugar_emision }}</td>
                             <td class="text-center">{{ item.fecha }} {{ item.hora }}</td>
                             <v-col cols="11">
-                                <v-btn size="large" rounded="pill" color="primary" class="rounded-pill" block type="submit" @click="mostrarInformacion(item.descripcion)">Ver Información</v-btn>
+                                <v-btn size="large" color="primary" block type="submit" @click="mostrarInformacion(item.descripcion)">Ver Información</v-btn>
                             </v-col>
                         </tr>
                     </tbody>
@@ -232,6 +235,10 @@ function mostrarInformacion(descripcion: string) {
         <v-card-title class="headline">Generar Compromiso</v-card-title>
   
         <v-row class="d-flex justify-center align-center">
+            <v-col cols="11">
+                <v-label class="font-weight-medium mb-1">Asunto</v-label>
+                <v-text-field variant="outlined" class="border-borderColor" type="text" hide-details color="primary" v-model="nuevaActa.titulo" required></v-text-field>
+            </v-col>
             <v-col cols="11">
                 <v-label class="font-weight-medium mb-1">Descripción de Acta</v-label>
                 <v-textarea clearable placeholder="Ingrese texto de descripción de acta." v-model="nuevaActa.descripcion"></v-textarea>

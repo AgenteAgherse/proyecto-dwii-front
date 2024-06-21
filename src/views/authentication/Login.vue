@@ -9,7 +9,6 @@ import LoginForm from '@/components/auth/LoginForm.vue';
                     <div class="boxed-auth-wrap">
                         <v-card rounded="xl" elevation="10" class="px-sm-1 px-0  mx-auto index-2" max-width="450">
                             <v-card-item class="pa-sm-8">
-                                <!-- <div class="text-h6 text-medium-emphasis text-center mb-6">Your Social Campaigns</div> -->
                                 <LoginForm />
                                 <h6 class="text-subtitle-1  text-grey100 d-flex justify-center align-center mt-3">
                                     ¿No estás registrado?

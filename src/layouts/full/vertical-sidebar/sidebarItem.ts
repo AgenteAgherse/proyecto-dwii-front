@@ -1,9 +1,5 @@
 import {
-  LayoutDashboardIcon,BorderAllIcon,
-  AlertCircleIcon,
-  CircleDotIcon,
-  BoxMultiple1Icon,
-  LoginIcon, MoodHappyIcon, ActivityIcon, FileSpreadsheetIcon
+  HomeIcon, FileSpreadsheetIcon, FileTimeIcon, CheckupListIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -27,19 +23,19 @@ const sidebarItem: menu[] = [
   { header: 'Home' },
   {
     title: 'Inicio',
-    icon: LayoutDashboardIcon,
+    icon: HomeIcon,
     BgColor: 'primary',
     to: '/'
   },
   {
     title: 'Próximos Compromisos',
-    icon: LayoutDashboardIcon,
+    icon: FileTimeIcon,
     BgColor: 'primary',
     to: '/compromisos'
   },
   {
     title: 'Compromisos Inscritos',
-    icon: LayoutDashboardIcon,
+    icon: CheckupListIcon,
     BgColor: 'primary',
     to: '/compromisos-inscritos'
   },

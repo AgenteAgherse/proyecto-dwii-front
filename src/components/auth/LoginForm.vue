@@ -12,8 +12,17 @@ const credentials = ref({
     'user': '',
     'password': '',
 })
+
+var update = ref({
+    'identificacion': 0,
+    'usuario': '',
+    'nueva_contra': '',
+    'confirmar': '',
+});
+
 const credentialsErrorMessage = ref('');
 const credentialsError = ref(false);
+const cambiarContra = ref(false);
 
 async function ingresar() {
     await axios.get(`http://localhost/proyecto-dwii/Controller/UserController.php?user=${credentials.value.user}&password=${credentials.value.password}`)
@@ -33,6 +42,38 @@ async function ingresar() {
         credentialsErrorMessage.value = "Error en las credenciales";
     });
 }
+
+async function actualizarContra() { 
+    const body = {
+            'identificacion': update.value.identificacion,
+            'usuario': update.value.usuario,
+            'nueva_contra': update.value.nueva_contra
+        };
+        console.log(body);
+
+    if (update.value.nueva_contra !== update.value.confirmar) {
+        alert('Las contraseñas no son iguales.');
+        return;
+    }
+
+    await axios({
+        method: 'POST',
+        url: `http://localhost/proyecto-dwii/Controller/UserController.php?cambio_contra=true`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: body,
+    })
+    .then((res) => {
+        alert('Cambios Realizados con Éxito');
+        cambiarContra.value = false;
+        location.reload();
+    })
+    .catch((error) => {
+        alert('Los datos de usuario e identificación no concuerdan');
+    });
+}
+
 </script>
 
 <template>
@@ -58,9 +99,7 @@ async function ingresar() {
             <v-col cols="12 " class="py-0">
                 <div class="d-flex flex-wrap align-center w-100 ">
                     <div class="ml-sm-auto">
-                        <RouterLink to=""
-                            class="text-primary text-decoration-none text-body-1 opacity-1 font-weight-medium">
-                            Olvidaste tu Contraseña?</RouterLink>
+                        <v-btn class="text-primary text-decoration-none text-body-1 opacity-1 font-weight-medium" @click="cambiarContra = true">Olvidaste tu Contraseña?</v-btn>
                     </div>
                 </div>
             </v-col>
@@ -69,4 +108,34 @@ async function ingresar() {
             </v-col>
         </v-row>
     </div>
+
+
+    <v-dialog v-model="cambiarContra" max-width="500px">
+      <v-card>
+        <v-card-title class="headline">Información del Acta</v-card-title>
+
+        <v-col cols="11">
+            <v-label class="font-weight-medium mb-1">Ingrese Identificación</v-label>
+            <v-text-field type="number" name="identificacion" v-model="update.identificacion" placeholder="Ingrese identificación"></v-text-field>
+        </v-col>
+        <v-col cols="11">
+            <v-label class="font-weight-medium mb-1">Ingrese Usuario</v-label>
+            <v-text-field type="text" name="user" v-model="update.usuario" placeholder="Ingrese usuario"></v-text-field>
+        </v-col>
+        <v-col cols="11">
+            <v-label class="font-weight-medium mb-1">Ingrese Nueva Contraseña</v-label>
+            <v-text-field type="password" name="password" v-model="update.nueva_contra" placeholder="Ingrese contraseña"></v-text-field>
+        </v-col>
+        <v-col cols="11">
+            <v-label class="font-weight-medium mb-1">Confirmar Nueva Contraseña</v-label>
+            <v-text-field type="password" name="password-confirm" v-model="update.confirmar" placeholder="Ingrese contraseña"></v-text-field>
+        </v-col>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+            <v-btn color="primary" @click="actualizarContra">Cambiar Contraseña</v-btn>
+            <v-btn color="outlined" text @click="cambiarContra = false">Cerrar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 </template>

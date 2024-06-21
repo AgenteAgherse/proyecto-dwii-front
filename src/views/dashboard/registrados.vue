@@ -34,22 +34,29 @@ onMounted(() => {
 
 
 async function eliminarParticipacion(compromiso: number) {
-    console.log(`${compromiso}`)
-    await axios({
-        method: 'get',
-        url: `http://localhost/proyecto-dwii/Controller/ParticipanteController.php?eliminar_compromiso=true&compromiso=${compromiso}`,
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Authorization': id
+    const response = confirm('¿Está seguro/a de salir del evento?');
+    
+    if (response) {
+        await axios({
+            method: 'get',
+            url: `http://localhost/proyecto-dwii/Controller/ParticipanteController.php?eliminar_compromiso=true&compromiso=${compromiso}`,
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Authorization': id
         }
-    }).then((res) => {
-        location.reload();
-    })
-    .catch((error) => {
-        alert(`Error al momento de salir del evento. ${error}`);
-    })
+        }).then((res) => {
+            location.reload();
+        })
+        .catch((error) => {
+            alert(`Error al momento de salir del evento. ${error}`);
+        })
+    }
 }
 
+
+function verNovedades(id: number) {
+    router.push(`/compromisos-inscritos/${id}`)
+}
 </script>
 
 <template>
@@ -73,7 +80,11 @@ async function eliminarParticipacion(compromiso: number) {
                             <td class="text-center">{{ item.fecha_inicio }} / {{ item.fecha_fin }}</td>
                             <td class="text-center">{{ item.hora_inicio }} / {{ item.hora_fin }}</td>
                             <td class="text-center">{{ item.lugar }}</td>
-                            <td class="d-flex justify-center"><v-btn size="large" rounded="pill" color="error" class="rounded-pill" type="submit" flat @click="eliminarParticipacion(item.idcompromiso)">Salir</v-btn></td>
+                            <td class="d-flex justify-center">
+                                <v-btn size="large" color="primary"  @click="verNovedades(item.idcompromiso)">Ver Novedades</v-btn>
+                                <v-btn size="large" color="error" @click="eliminarParticipacion(item.idcompromiso)">Salir</v-btn>
+                                
+                            </td>
                         </tr>
                     </tbody>
                 </v-table>
