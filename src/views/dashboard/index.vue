@@ -21,10 +21,12 @@ const nuevo = ref({
 });
 
 onMounted(() => {
+    // En caso que el usuario no tenga una id correctamente.
     const id = localStorage.getItem('id');
     if (id === '' || id === undefined) {
         router.push('/login');
     }
+    
 
     axios({
     method: 'get',
@@ -34,6 +36,7 @@ onMounted(() => {
         'Authorization': id
     }
     }).then(response => {
+        console.log(response.data);
         compromisos.value = response.data;
     }).catch(error => {
         console.error(error);
